@@ -1,16 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SFF.API.Domain.Repositories;
+using SFF.API.Domain.Services;
+using SFF.API.Persistence.Contexts;
+using SFF.API.Persistence.Repositories;
+using SFF.API.Services;
 
 namespace SFF.API
 {
@@ -27,7 +34,16 @@ namespace SFF.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<AppDbContext>(options =>
+	            options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IFilmService, FilmService>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SFF.API", Version = "v1" });
@@ -44,6 +60,10 @@ namespace SFF.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SFF.API v1"));
             }
 
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
