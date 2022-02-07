@@ -25,8 +25,8 @@ namespace SFF.API.Controllers
         public IActionResult GetAllFilms()
         {
  
-            //var filmsIncludeCopies = await _filmService.FilmListIncludeCopiesAsync();
-            var filmsNoCopies = _filmService.FilmNoCopiesList().ToList();
+            var filmsIncludeCopies = _filmService.FilmListIncludeCopies();
+            //var filmsNoCopies = _filmService.FilmNoCopiesList().ToList();
 
             try
             {
@@ -34,7 +34,7 @@ namespace SFF.API.Controllers
      
                 //if(user == "admin" || user == "filmstudio"){
                 //return Ok(filmsIncludeCopies);
-                return Ok(filmsNoCopies);
+                return Ok(filmsIncludeCopies);
                
                 //else return Ok(filmsNoCopies);
             }

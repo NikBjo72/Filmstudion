@@ -27,7 +27,6 @@ namespace SFF.API.Persistence.Repositories
 	    {
             User user = getUser(userId);
 	    	_context.Users.Remove(user);
-            //await _unitOfWork.CompleteAsync();
 	    }
 
         public User GetById(string userId)

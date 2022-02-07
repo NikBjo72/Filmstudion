@@ -14,12 +14,12 @@ namespace SFF.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserControllers : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public UserControllers(IUserService userService, IMapper mapper)
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
             _mapper = mapper;   
@@ -28,18 +28,25 @@ namespace SFF.API.Controllers
         
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register(UserRegisterRequestData model)
+        public async Task<ActionResult<UserRegisterResponceData>> Register(UserRegisterRequestData model)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (model.IsAdmin)
+                    {
+                        User newUser = _userService.Register(model);
+                        return _mapper.Map<UserRegisterResponceData>(newUser);        
+                    }
 
-            try
-            {
-                _userService.Register(model);
-                return Ok(_mapper.Map<UserRegisterResponceData>(model));
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
+            return BadRequest("IsAdmin needs to be true");
            
         }
         

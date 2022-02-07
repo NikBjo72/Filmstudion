@@ -12,7 +12,7 @@ namespace SFF.API.Services.Interfaces
         UserAuthenticateResponceData Authenticate(UserAuthenticateRequestData model);
         IQueryable<User> GetAll();
         User GetById(string userId);
-        void Register(UserRegisterRequestData model);
+        User Register(UserRegisterRequestData model);
         //void Update(int id, UpdateRequest model);
         void Delete(string userId);
     }

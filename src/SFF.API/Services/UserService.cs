@@ -56,20 +56,23 @@ namespace SFF.API.Services
             return _userRepository.GetById(userId);
         }
 
-        public void Register(UserRegisterRequestData model)
+        public User Register(UserRegisterRequestData model)
         {
-            // validate
+            // kollar om användare redan finns
             if (_userRepository.QueryableUser().Any(x => x.UserName == model.UserName))
                 throw new Exception("Username '" + model.UserName + "' is already taken");
 
-            // map model to new user object
-            var user = _mapper.Map<User>(model);
+            var newUser = _mapper.Map<User>(model);
+            newUser.Role = "admin";
+            newUser.Token ="";
 
-            // hash password
-            user.Password = BCryptNet.HashPassword(model.Password);
+            // krypterar lösenordet
+            newUser.Password = BCryptNet.HashPassword(model.Password);
 
-            // save user
-            _userRepository.AddAsync(user);
+            // sparar användaren
+            _userRepository.AddAsync(newUser);
+            _unitOfWork.CompleteAsync();
+            return newUser;
         }
 
         // public void Update(int id, UpdateRequest model)
@@ -90,9 +93,10 @@ namespace SFF.API.Services
         //     _context.SaveChanges();
         // }
 
-        public void Delete(string userId)
+        public async void Delete(string userId)
         {
            _userRepository.Delete(userId);
+           await _unitOfWork.CompleteAsync();
         }
     }
 
