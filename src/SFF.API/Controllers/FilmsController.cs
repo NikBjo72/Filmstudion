@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SFF.API.Domain.Entities.FilmEntity;
-using SFF.API.Domain.Services;
+using SFF.API.Domain.Entities;
+using SFF.API.Services.Interfaces;
 
 namespace SFF.API.Controllers
 {
@@ -22,11 +22,11 @@ namespace SFF.API.Controllers
 
         
         [HttpGet]
-        public async Task<IActionResult> GetAllFilmsAcync()
+        public IActionResult GetAllFilms()
         {
  
             //var filmsIncludeCopies = await _filmService.FilmListIncludeCopiesAsync();
-            var filmsNoCopies = await _filmService.FilmNoCopiesListAsync();
+            var filmsNoCopies = _filmService.FilmNoCopiesList().ToList();
 
             try
             {

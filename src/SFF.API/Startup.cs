@@ -13,11 +13,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using SFF.API.Domain.Repositories;
-using SFF.API.Domain.Services;
+using SFF.API.Domain.Helpers;
 using SFF.API.Persistence.Contexts;
+using SFF.API.Persistence.Interfaces;
 using SFF.API.Persistence.Repositories;
 using SFF.API.Services;
+using SFF.API.Services.Interfaces;
 
 namespace SFF.API
 {
@@ -37,10 +38,14 @@ namespace SFF.API
             services.AddDbContext<AppDbContext>(options =>
 	            options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddCors();
+
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IFilmService, FilmService>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddControllers();
 

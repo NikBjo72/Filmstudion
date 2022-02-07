@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 
 
-namespace SFF.API.Domain.Services
+namespace SFF.API.Services.Interfaces
 {
-    public interface IRegisterFilmStudioService
+    public interface IRegisterFilmStudio
     {
         public string FilmStudioName { get; set; }
         public string FilmStudioCity { get; set; }

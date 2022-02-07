@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 
 
-namespace SFF.API.Domain.Entities.FilmEntity
+namespace SFF.API.Domain.Entities.Interfaces
 {
-    public class FilmCopy : IFilmCopy
+    public interface IFilmCopy
     {
         public string FilmCopyId { get; set; }
         public string FilmId { get; set; }
@@ -12,6 +12,7 @@ namespace SFF.API.Domain.Entities.FilmEntity
         public string FilmStudioId { get; set; }
         public DateTime Rented { get; set; }
         //public Film Film { get; set; }
+        
     }
 
 }

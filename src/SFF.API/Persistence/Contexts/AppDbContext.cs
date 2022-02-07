@@ -1,9 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SFF.API.Domain.Entities.FilmEntity;
-using SFF.API.Domain.Entities.FilmStudioEntity;
-using SFF.API.Domain.Entities.UserEntity;
+using SFF.API.Domain.Entities;
 
 namespace SFF.API.Persistence.Contexts
 {

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SFF.API.Domain.Entities.FilmEntity;
-using SFF.API.Domain.Repositories;
-using SFF.API.Domain.Services;
+using SFF.API.Domain.Entities;
+using SFF.API.Persistence.Interfaces;
+using SFF.API.Services.Interfaces;
 
 namespace SFF.API.Services
 {
@@ -16,13 +16,13 @@ namespace SFF.API.Services
         {
             this._filmRepository = filmRepository;
         }
-        public async Task<Film[]> FilmListIncludeCopiesAsync()
+        public IQueryable<Film> FilmListIncludeCopies()
         {
-            return await _filmRepository.FilmListIncludeCopiesAsync();
+            return _filmRepository.FilmListIncludeCopies();
         }
-        public async Task<Film[]>FilmNoCopiesListAsync()
+        public IQueryable<Film> FilmNoCopiesList()
         {
-            return await _filmRepository.FilmNoCopiesListAsync();
+            return _filmRepository.FilmNoCopiesList();
         }
     }
 

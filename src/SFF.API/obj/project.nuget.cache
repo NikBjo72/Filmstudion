@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "8kM+sGeIi2Kgi31zBqbEJOKGHJw/2SoEQ4s7beNr1+lSSNza6ubSuaxDdHl6csfUHqkCYR4v9dQAu6bwMeQLqQ==",
+  "dgSpecHash": "esHFaWreqq9SqZrB4laOisr1kFbLiJMdZdtH3FvAY8ijRHeVXt7u8g++1moOZzGDvMY2hr5rrygVoKlcTawPZg==",
   "success": true,
   "projectFilePath": "/Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/SFF.API.csproj",
   "expectedPackageFiles": [
     "/Users/niklasbjork/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/bcrypt.net-next/4.0.2/bcrypt.net-next.4.0.2.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/5.0.13/microsoft.aspnetcore.authentication.jwtbearer.5.0.13.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.cryptography.internal/5.0.13/microsoft.aspnetcore.cryptography.internal.5.0.13.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/5.0.13/microsoft.aspnetcore.cryptography.keyderivation.5.0.13.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/5.0.13/microsoft.aspnetcore.identity.entityframeworkcore.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.data.sqlite.core/5.0.13/microsoft.data.sqlite.core.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.dotnet.platformabstractions/3.1.6/microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
@@ -22,10 +27,17 @@
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.dependencyinjection/5.0.2/microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.dependencymodel/5.0.0/microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.extensions.identity.core/5.0.13/microsoft.extensions.identity.core.5.0.13.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.extensions.identity.stores/5.0.13/microsoft.extensions.identity.stores.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.logging/5.0.0/microsoft.extensions.logging.5.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.logging.abstractions/5.0.0/microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.identitymodel.jsonwebtokens/6.15.1/microsoft.identitymodel.jsonwebtokens.6.15.1.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.identitymodel.logging/6.15.1/microsoft.identitymodel.logging.6.15.1.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.identitymodel.protocols/6.7.1/microsoft.identitymodel.protocols.6.7.1.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.7.1/microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.identitymodel.tokens/6.15.1/microsoft.identitymodel.tokens.6.15.1.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.4/sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/sqlitepclraw.core/2.0.4/sqlitepclraw.core.2.0.4.nupkg.sha512",
@@ -38,8 +50,10 @@
     "/Users/niklasbjork/.nuget/packages/system.collections.immutable/5.0.0/system.collections.immutable.5.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/system.diagnostics.diagnosticsource/5.0.1/system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/system.identitymodel.tokens.jwt/6.15.1/system.identitymodel.tokens.jwt.6.15.1.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
-    "/Users/niklasbjork/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "/Users/niklasbjork/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/system.security.cryptography.cng/4.5.0/system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

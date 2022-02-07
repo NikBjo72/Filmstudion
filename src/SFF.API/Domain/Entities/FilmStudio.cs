@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using SFF.API.Domain.Entities.FilmEntity;
-using SFF.API.Domain.Entities.UserEntity;
+using SFF.API.Domain.Entities.Interfaces;
 
-namespace SFF.API.Domain.Entities.FilmStudioEntity
+namespace SFF.API.Domain.Entities
 {
     public class FilmStudio : IFilmStudio, IUser
     {

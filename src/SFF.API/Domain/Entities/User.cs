@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using SFF.API.Domain.Entities.FilmStudioEntity;
+using System.Text.Json.Serialization;
+using SFF.API.Domain.Entities.Interfaces;
 
-namespace SFF.API.Domain.Entities.UserEntity
+namespace SFF.API.Domain.Entities
 {
     public class User : IUser
     {
@@ -11,6 +12,8 @@ namespace SFF.API.Domain.Entities.UserEntity
         public string UserName { get; set; }
         public string FilmStudioId { get; set; }
         public FilmStudio FilmStudios { get; set; }
+
+        [JsonIgnore]
         public string Password { get; set; }
         public string Token { get; set; }
     }

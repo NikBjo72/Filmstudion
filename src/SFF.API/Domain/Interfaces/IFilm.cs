@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 
 
-namespace SFF.API.Domain.Entities.FilmEntity
+namespace SFF.API.Domain.Entities.Interfaces
 {
-    public class Film : Ifilm
+    public interface Ifilm
     {
         public string FilmId { get; set; }
         public string Name { get; set; }
