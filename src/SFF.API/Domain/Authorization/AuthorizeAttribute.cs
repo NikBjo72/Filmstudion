@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SFF.API.Domain.Entities.UserEntity;
+using SFF.API.Domain.Entities;
 using System;
 using System.Linq;
 

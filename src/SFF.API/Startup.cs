@@ -43,6 +43,8 @@ namespace SFF.API
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IFilmService, FilmService>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -53,6 +55,11 @@ namespace SFF.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SFF.API", Version = "v1" });
             });
+        }
+
+        private void UnitOfWork()
+        {
+            throw new NotImplementedException();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

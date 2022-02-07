@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace SFF.API.Models.Interfaces
+namespace SFF.API.Transfer.Interfaces
 {
     public interface IUserAuthenticate
     {

@@ -11,7 +11,7 @@ namespace SFF.API.Persistence.Repositories
     public class FilmRepository : BaseRepository, IFilmRepository
     {
     
-        public FilmRepository(AppDbContext context) : base(context) {}
+        public FilmRepository(AppDbContext context, UnitOfWork unitOfWork) : base(context, unitOfWork) {}
 
         // public async Task<Film[]> FilmListIncludeCopiesAsync()
         // {

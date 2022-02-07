@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using SFF.API.Models.Interfaces;
+using SFF.API.Transfer.Interfaces;
 
-namespace SFF.API.Models
+namespace SFF.API.Transfer
 {
-    public class UserAuthenticateModelRequest : IUserAuthenticate
+    public class UserAuthenticateRequestData : IUserAuthenticate
     {
         public string UserName { get; set; }
         public string Password { get; set; }

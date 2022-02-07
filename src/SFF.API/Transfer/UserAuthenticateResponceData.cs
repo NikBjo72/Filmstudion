@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using SFF.API.Domain.Entities;
-using SFF.API.Models.Interfaces;
+using SFF.API.Transfer.Interfaces;
 
-namespace SFF.API.Models
+namespace SFF.API.Transfer
 {
-    public class UserAuthenticateModelResponce
+    public class UserAuthenticateResponceData
     {
         public string UserId { get; set; }
         public string Role { get; set; }

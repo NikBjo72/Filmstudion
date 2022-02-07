@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SFF.API.Domain.Entities;
-using SFF.API.Models;
+using SFF.API.Transfer;
 
 namespace SFF.API.Services.Interfaces
 {
     public interface IUserService
     {
-        UserAuthenticateModelRequest Authenticate(UserAuthenticateModelRequest model);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
-        void Register(UserAuthenticateModelResponce model);
+        UserAuthenticateResponceData Authenticate(UserAuthenticateRequestData model);
+        IQueryable<User> GetAll();
+        User GetById(string userId);
+        void Register(UserRegisterRequestData model);
         //void Update(int id, UpdateRequest model);
-        void Delete(int id);
+        void Delete(string userId);
     }
 
 }
