@@ -8,8 +8,8 @@ namespace SFF.API.Services.Interfaces
 {
     public interface IFilmService
     {
-        IQueryable<Film> FilmListIncludeCopies();
-        IQueryable<Film> FilmNoCopiesList();
+        public IQueryable<Film> FilmListIncludeCopies();
+        public IQueryable<Film> FilmNoCopiesList();
     }
 
 }

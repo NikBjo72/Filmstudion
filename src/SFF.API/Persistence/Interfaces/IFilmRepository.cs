@@ -8,9 +8,9 @@ namespace SFF.API.Persistence.Interfaces
 {
     public interface IFilmRepository
     {
-        IQueryable<Film> FilmListIncludeCopies();
-        IQueryable<Film> FilmNoCopiesList();
-        Task AddAsync(Film film);
+        public IQueryable<Film> FilmListIncludeCopies();
+        public IQueryable<Film> FilmNoCopiesList();
+        public Task AddAsync(Film film);
 
     }
 }

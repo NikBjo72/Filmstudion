@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SFF.API.Domain.Authorization;
 using SFF.API.Domain.Helpers;
 using SFF.API.Persistence.Contexts;
 using SFF.API.Persistence.Interfaces;
@@ -38,12 +39,16 @@ namespace SFF.API
             services.AddDbContext<AppDbContext>(options =>
 	            options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddCors();
+            //services.AddCors();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IFilmService, FilmService>();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IJwtUtils, JwtUtils>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

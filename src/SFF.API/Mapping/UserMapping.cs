@@ -16,6 +16,10 @@ namespace SFF.API.Mapping
 
             this.CreateMap<User, UserRegisterRequestData>()
             .ReverseMap();
+            
+            this.CreateMap<User, UserRegisterResponceData>()
+            .ReverseMap();
+
         }
     }    
 }    

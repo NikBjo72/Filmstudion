@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using SFF.API.Domain.Entities;
 using SFF.API.Persistence.Contexts;
+using SFF.API.Persistence.Interfaces;
 
-namespace SFF.API.Persistence.Interfaces
+namespace SFF.API.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
