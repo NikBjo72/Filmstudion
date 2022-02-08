@@ -71,3 +71,7 @@
 /Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/obj/Debug/net5.0/ref/SFF.API.dll
 /Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/obj/Debug/net5.0/SFF.API.pdb
 /Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/obj/Debug/net5.0/SFF.API.genruntimeconfig.cache
+/Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/bin/Debug/net5.0/SFF.API.StaticWebAssets.xml
+/Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/bin/Debug/net5.0/Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+/Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/bin/Debug/net5.0/Microsoft.AspNetCore.Identity.UI.dll
+/Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/bin/Debug/net5.0/Microsoft.Extensions.FileProviders.Embedded.dll

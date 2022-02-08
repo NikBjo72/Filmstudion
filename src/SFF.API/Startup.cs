@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SFF.API.Domain.Authorization;
+using SFF.API.Domain.Entities;
 using SFF.API.Domain.Helpers;
 using SFF.API.Persistence.Contexts;
 using SFF.API.Persistence.Interfaces;
@@ -40,6 +42,13 @@ namespace SFF.API
 	            options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddCors();
+
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                // Config
+            }).AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -85,6 +94,7 @@ namespace SFF.API
 
             app.UseRouting();
 
+            app.UseAuthentication();    
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

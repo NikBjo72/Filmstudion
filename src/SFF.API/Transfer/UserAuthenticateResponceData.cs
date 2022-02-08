@@ -7,7 +7,7 @@ namespace SFF.API.Transfer
 {
     public class UserAuthenticateResponceData
     {
-        public string UserId { get; set; }
+        public string Id { get; set; }
         public string Role { get; set; }
         public string UserName { get; set; }
         public string FilmStudioId { get; set; }

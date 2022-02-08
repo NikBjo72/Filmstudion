@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "esHFaWreqq9SqZrB4laOisr1kFbLiJMdZdtH3FvAY8ijRHeVXt7u8g++1moOZzGDvMY2hr5rrygVoKlcTawPZg==",
+  "dgSpecHash": "hMWdXY77S9egLFH0K1bmQmxQIgJs11fZMSLC7WoSS785+OtvumEbKCXNMfFGd1t75eh4qykS5qIkaKil3NdX+g==",
   "success": true,
   "projectFilePath": "/Users/niklasbjork/Documents/Repos/REPOS C#/Filmstudion/src/SFF.API/SFF.API.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.cryptography.internal/5.0.13/microsoft.aspnetcore.cryptography.internal.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/5.0.13/microsoft.aspnetcore.cryptography.keyderivation.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/5.0.13/microsoft.aspnetcore.identity.entityframeworkcore.5.0.13.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.aspnetcore.identity.ui/5.0.11/microsoft.aspnetcore.identity.ui.5.0.11.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.data.sqlite.core/5.0.13/microsoft.data.sqlite.core.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.dotnet.platformabstractions/3.1.6/microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
@@ -27,6 +28,8 @@
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.dependencyinjection/5.0.2/microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.dependencymodel/5.0.0/microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.extensions.fileproviders.abstractions/5.0.0/microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
+    "/Users/niklasbjork/.nuget/packages/microsoft.extensions.fileproviders.embedded/5.0.11/microsoft.extensions.fileproviders.embedded.5.0.11.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.identity.core/5.0.13/microsoft.extensions.identity.core.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.identity.stores/5.0.13/microsoft.extensions.identity.stores.5.0.13.nupkg.sha512",
     "/Users/niklasbjork/.nuget/packages/microsoft.extensions.logging/5.0.0/microsoft.extensions.logging.5.0.0.nupkg.sha512",

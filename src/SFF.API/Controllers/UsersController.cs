@@ -36,7 +36,7 @@ namespace SFF.API.Controllers
                 {
                     if (model.IsAdmin)
                     {
-                        User newUser = _userService.Register(model);
+                        User newUser = await _userService.Register(model);
                         return _mapper.Map<UserRegisterResponceData>(newUser);        
                     }
 

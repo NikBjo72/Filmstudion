@@ -1,16 +1,17 @@
 using System;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SFF.API.Domain.Entities;
 
 namespace SFF.API.Persistence.Contexts
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public DbSet<Film> Films { get; set; }
         public DbSet<FilmCopy> FilmCopies { get; set; }
         public DbSet<FilmStudio> FilmStudios { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -42,7 +43,7 @@ namespace SFF.API.Persistence.Contexts
             builder.Entity<FilmStudio>().Property(p => p.Token);
 
             builder.Entity<User>().ToTable("Users");
-            builder.Entity<User>().Property(p => p.UserId).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<User>().Property(p => p.Role).IsRequired();
             builder.Entity<User>().Property(p => p.UserName).IsRequired().HasMaxLength(30);
             builder.Entity<User>().Property(p => p.Password).IsRequired();

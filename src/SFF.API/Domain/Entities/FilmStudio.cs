@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using SFF.API.Domain.Entities.Interfaces;
 
 namespace SFF.API.Domain.Entities
 {
-    public class FilmStudio : IFilmStudio, IUser
+    public class FilmStudio : IdentityUser, IFilmStudio, IUser
     {
         public string FilmStudioId { get; set; }
         public string Name { get; set; }
