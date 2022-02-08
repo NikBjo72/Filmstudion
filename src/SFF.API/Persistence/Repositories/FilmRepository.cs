@@ -10,8 +10,11 @@ namespace SFF.API.Persistence.Repositories
 {
     public class FilmRepository : BaseRepository, IFilmRepository
     {
-    
-        public FilmRepository(AppDbContext context) : base(context) {}
+        //private readonly UnitOfWork _unitOfWork;
+        public FilmRepository(AppDbContext context/*, UnitOfWork unitOfWork*/) : base(context)
+        {
+           //_unitOfWork = unitOfWork;
+        }
 
         // public async Task<Film[]> FilmListIncludeCopiesAsync()
         // {
@@ -41,6 +44,7 @@ namespace SFF.API.Persistence.Repositories
         public async Task AddAsync(Film film)
 	    {
 	    	await _context.Films.AddAsync(film);
+            //await _unitOfWork.CompleteAsync();
 	    }
 
     }

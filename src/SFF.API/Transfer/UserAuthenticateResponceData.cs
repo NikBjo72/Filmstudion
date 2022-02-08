@@ -11,7 +11,7 @@ namespace SFF.API.Transfer
         public string Role { get; set; }
         public string UserName { get; set; }
         public string FilmStudioId { get; set; }
-        public FilmStudio FilmStudios { get; set; }
+        public FilmStudio FilmStudio { get; set; }
         public string Token { get; set; }
     }
 }

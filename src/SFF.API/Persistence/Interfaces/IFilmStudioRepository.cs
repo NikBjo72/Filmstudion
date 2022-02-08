@@ -12,5 +12,6 @@ namespace SFF.API.Persistence.Interfaces
        public IQueryable<FilmStudio> QueryableFilmStudioNoFilmCopies();
        public Task AddAsync(FilmStudio filmStudio);
        public FilmStudio GetByIdIncludeFilmCopies(string filmStudioId);
+       public FilmStudio getFilmStudio(string filmStudioId);
     }
 }

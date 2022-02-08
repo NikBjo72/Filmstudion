@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SFF.API.Domain.Authorization;
 using SFF.API.Domain.Entities;
+using SFF.API.Persistence.Repositories;
 using SFF.API.Services.Interfaces;
+using SFF.API.Transfer;
 
 namespace SFF.API.Controllers
 {
@@ -15,17 +17,16 @@ namespace SFF.API.Controllers
     [Route("api/[controller]")]
     public class FilmsController : ControllerBase
     {
-        private readonly IFilmService _filmService;
+        private IFilmService _filmService;
 
         public FilmsController(IFilmService filmService)
         {
-            _filmService = filmService;   
+            _filmService = filmService;
         }
         //[AllowAnonymous]
         [HttpGet]
         public IActionResult GetAllFilms()
         {
- 
             var filmsIncludeCopies = _filmService.FilmListIncludeCopies();
             //var filmsNoCopies = _filmService.FilmNoCopiesList().ToList();
 
@@ -44,6 +45,24 @@ namespace SFF.API.Controllers
                 return BadRequest();
             }
            
+        }
+        //[AllowAnonymous]
+        [HttpPut]
+        public async Task<ActionResult<Film>> AddMovie(CreateFilmRequestData model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                var result = _filmService.CreateNewFilm(model);
+                return await result;
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+             return BadRequest();
         }
         
     }

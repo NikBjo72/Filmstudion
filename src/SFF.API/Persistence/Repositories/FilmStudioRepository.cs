@@ -37,7 +37,7 @@ namespace SFF.API.Persistence.Repositories
         {
             return getFilmStudio(filmStudioId);
         }
-        private FilmStudio getFilmStudio(string filmStudioId)
+        public FilmStudio getFilmStudio(string filmStudioId)
         {
             var filmstudio = _context.FilmStudios.Find(filmStudioId);
             if (filmstudio == null) throw new KeyNotFoundException("Filmstudio not found");

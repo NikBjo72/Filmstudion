@@ -51,6 +51,9 @@ namespace SFF.API
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<IFilmCopyRepository, FilmCopyRepository>();
+            services.AddScoped<IFilmCopyService, FilmCopyService>();
+
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IFilmService, FilmService>();
 

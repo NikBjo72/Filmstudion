@@ -17,6 +17,7 @@ namespace SFF.API.Services
     public class UserService : IUserService
     {
         private IUserRepository _userRepository;
+        private IFilmStudioRepository _filmStudioRepository;
         private IJwtUtils _jwtUtils;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -26,6 +27,7 @@ namespace SFF.API.Services
 
         public UserService(
             IUserRepository userRepository,
+            IFilmStudioRepository filmStudioRepository,
             IJwtUtils jwtUtils,
             IMapper mapper,
             IUnitOfWork unitOfWork,
@@ -34,6 +36,7 @@ namespace SFF.API.Services
             UserManager<User> userManager)
         {
             _userRepository = userRepository;
+            _filmStudioRepository = filmStudioRepository;
             _jwtUtils = jwtUtils;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
@@ -46,13 +49,15 @@ namespace SFF.API.Services
         {
             var user = _userRepository.QueryableUser().SingleOrDefault(x => x.UserName == model.UserName);
 
-            // validate
+            // Verifierar användarnamn och lösenord
             if (user == null || !BCryptNet.Verify(model.Password, user.Password))
                 throw new Exception("Username or password is incorrect");
 
-            // authentication successful
+            // Om autentiseringen var ok
             var response = _mapper.Map<UserAuthenticateResponceData>(user);
             response.Token = _jwtUtils.GenerateToken(user);
+            FilmStudio filmstudio = _filmStudioRepository.getFilmStudio(response.FilmStudioId);
+            response.FilmStudio = filmstudio;
             return response;
         }
 
