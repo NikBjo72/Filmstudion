@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SFF.API.Domain.Authorization;
 using SFF.API.Domain.Entities;
 using SFF.API.Services.Interfaces;
 using SFF.API.Transfer;
@@ -36,14 +36,13 @@ namespace SFF.API.Controllers
                 {
                         RegisterFilmStudioResponceData newFilmStudio = await _filmStudioService.RegisterFilmStudio(model);
                         return _mapper.Map<RegisterFilmStudioResponceData>(newFilmStudio);
-
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
             }
-            return BadRequest("IsAdmin needs to be true");
+            return BadRequest();
            
         }
         

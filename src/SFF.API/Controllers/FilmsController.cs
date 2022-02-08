@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SFF.API.Domain.Authorization;
 using SFF.API.Domain.Entities;
 using SFF.API.Services.Interfaces;
 
 namespace SFF.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FilmsController : ControllerBase
@@ -19,8 +21,7 @@ namespace SFF.API.Controllers
         {
             _filmService = filmService;   
         }
-
-        
+        //[AllowAnonymous]
         [HttpGet]
         public IActionResult GetAllFilms()
         {

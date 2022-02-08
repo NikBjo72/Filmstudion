@@ -61,6 +61,8 @@ namespace SFF.API
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserService, UserService>();
 
+            services.AddCors();
+            services.AddControllers();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -71,6 +73,7 @@ namespace SFF.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SFF.API", Version = "v1" });
             });
+            
         }
 
         private void UnitOfWork()
@@ -96,8 +99,14 @@ namespace SFF.API
 
             app.UseRouting();
 
-            app.UseAuthentication();    
-            app.UseAuthorization();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            //app.UseAuthentication();    
+            //app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

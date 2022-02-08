@@ -13,7 +13,7 @@ namespace SFF.API.Domain.Authorization
     public interface IJwtUtils
     {
         public string GenerateToken(User user);
-        public int? ValidateToken(string token);
+        public string? ValidateToken(string token);
     }
 
     public class JwtUtils : IJwtUtils
@@ -32,7 +32,7 @@ namespace SFF.API.Domain.Authorization
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("Id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("Id", user.Id) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -40,7 +40,7 @@ namespace SFF.API.Domain.Authorization
             return tokenHandler.WriteToken(token);
         }
 
-        public int? ValidateToken(string token)
+        public string? ValidateToken(string token)
         {
             if (token == null) 
                 return null;
@@ -60,7 +60,7 @@ namespace SFF.API.Domain.Authorization
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "UserId").Value);
+                var userId = jwtToken.Claims.First(x => x.Type == "Id").Value;
 
                 // return user id from JWT token if validation successful
                 return userId;

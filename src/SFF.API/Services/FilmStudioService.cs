@@ -59,7 +59,7 @@ namespace SFF.API.Services
                 throw new Exception("Username '" + model.UserName + "' is already taken");
 
             if (_filmStudioRepository.QueryableFilmStudioNoFilmCopies().Any(x => x.Name == model.Name))
-            throw new Exception("Filmstudio name '" + model.UserName + "' is already taken");
+            throw new Exception("Filmstudio name '" + model.Name + "' is already taken");
 
             var newFilmStudioUser = _mapper.Map<User>(model);
             newFilmStudioUser.Role = "filmstudio";
