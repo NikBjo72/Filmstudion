@@ -36,11 +36,7 @@ namespace SFF.API.Persistence.Contexts
             builder.Entity<FilmStudio>().Property(p => p.FilmStudioId).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<FilmStudio>().Property(p => p.Name).IsRequired().HasMaxLength(30);
             builder.Entity<FilmStudio>().Property(p => p.City).IsRequired().HasMaxLength(30);
-            builder.Entity<FilmStudio>().Property(p => p.UserId).IsRequired();
-            builder.Entity<FilmStudio>().Property(p => p.Role).IsRequired();
-            builder.Entity<FilmStudio>().Property(p => p.UserName).IsRequired().HasMaxLength(30);
-            builder.Entity<FilmStudio>().Property(p => p.Password).IsRequired();
-            builder.Entity<FilmStudio>().Property(p => p.Token);
+
 
             builder.Entity<User>().ToTable("Users");
             builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();

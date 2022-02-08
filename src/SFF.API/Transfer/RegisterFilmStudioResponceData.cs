@@ -1,18 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Identity;
+using SFF.API.Transfer.Interfaces;
 using SFF.API.Domain.Entities.Interfaces;
+using SFF.API.Domain.Entities;
 
-namespace SFF.API.Domain.Entities
+namespace SFF.API.Transfer
 {
-    public class FilmStudio : IFilmStudio
+    public class RegisterFilmStudioResponceData : IFilmStudio
     {
         public string FilmStudioId { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         public List<FilmCopy> FilmCopies { get; set; }
-
     }
-
 }

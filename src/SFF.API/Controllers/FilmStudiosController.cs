@@ -14,31 +14,28 @@ namespace SFF.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FilmStudioController : ControllerBase
+    public class FilmStudiosController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IFilmStudioService _filmStudioService;
         private readonly IMapper _mapper;
 
-        public FilmStudioController(IUserService userService, IMapper mapper)
+        public FilmStudiosController(IFilmStudioService filmStudioService, IMapper mapper)
         {
-            _userService = userService;
+            _filmStudioService = filmStudioService;
             _mapper = mapper;   
         }
 
         
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<ActionResult<UserRegisterResponceData>> Register(UserRegisterRequestData model)
+        public async Task<ActionResult<RegisterFilmStudioResponceData>> Register(RegisterFilmStudioRequestData model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (model.IsAdmin)
-                    {
-                        User newUser = await _userService.Register(model);
-                        return _mapper.Map<UserRegisterResponceData>(newUser);        
-                    }
+                        RegisterFilmStudioResponceData newFilmStudio = await _filmStudioService.RegisterFilmStudio(model);
+                        return _mapper.Map<RegisterFilmStudioResponceData>(newFilmStudio);
 
                 }
                 catch (Exception ex)

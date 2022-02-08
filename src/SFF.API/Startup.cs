@@ -42,7 +42,6 @@ namespace SFF.API
 	            options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddCors();
-
             services.AddIdentity<User, IdentityRole>(config =>
             {
                 // Config
@@ -54,6 +53,9 @@ namespace SFF.API
 
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IFilmService, FilmService>();
+
+            services.AddScoped<IFilmStudioRepository, FilmStudioRepository>();
+            services.AddScoped<IFilmStudioService, FilmStudioService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IJwtUtils, JwtUtils>();

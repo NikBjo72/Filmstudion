@@ -20,6 +20,9 @@ namespace SFF.API.Mapping
             this.CreateMap<User, UserRegisterResponceData>()
             .ReverseMap();
 
+            this.CreateMap<User, RegisterFilmStudioRequestData>()
+            .ReverseMap();
+
         }
     }    
 }    
