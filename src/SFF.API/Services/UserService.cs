@@ -56,8 +56,11 @@ namespace SFF.API.Services
             // Om autentiseringen var ok
             var response = _mapper.Map<UserAuthenticateResponceData>(user);
             response.Token = _jwtUtils.GenerateToken(user);
+            if (user.Role == "fimstudio")
+            {
             FilmStudio filmstudio = _filmStudioRepository.getFilmStudio(response.FilmStudioId);
             response.FilmStudio = filmstudio;
+            }
             return response;
         }
 

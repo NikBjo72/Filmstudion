@@ -15,6 +15,9 @@ namespace SFF.API.Mapping
             this.CreateMap<FilmStudio, RegisterFilmStudioResponceData>()
             .ReverseMap();
 
+              this.CreateMap<FilmStudio, FilmStudioNoCityResponceData>()
+            .ReverseMap();
+
         }
     }    
 }    

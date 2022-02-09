@@ -45,6 +45,33 @@ namespace SFF.API.Controllers
             return BadRequest();
            
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult GetAllFilmsStudios()
+        {
+            try
+            {
+                var user = (User)HttpContext.Items["User"];
+
+                if (user == null || user.Role == "filmstudio")
+                {
+                    var filmstudiosNoCity = _filmStudioService.ListFilmStudioIncludeFilmCopiesNoCity();
+                    return Ok(filmstudiosNoCity);
+                }
+
+                if (user.Role == "admin")
+                {
+                    var filmstudios = _filmStudioService.QueryableFilmStudioIncludeFilmCopies();
+                    return Ok(filmstudios);
+                }
+            }
+            catch (Exception)
+            {
+               return BadRequest(); 
+            }
+            return BadRequest();
+        }
         
     }
 }

@@ -13,6 +13,7 @@ namespace SFF.API.Services.Interfaces
         public IQueryable<FilmStudio> QueryableFilmStudioNoFilmCopies();
         public Task<RegisterFilmStudioResponceData> RegisterFilmStudio(RegisterFilmStudioRequestData model);
         public FilmStudio GetByIdIncludeFilmCopies(string filmStudioId);
+        public IList<FilmStudioNoCityResponceData> ListFilmStudioIncludeFilmCopiesNoCity();
     }
 
 }

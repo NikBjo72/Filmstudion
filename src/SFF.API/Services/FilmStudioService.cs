@@ -44,6 +44,19 @@ namespace SFF.API.Services
             _userManager = userManager;
             _userRepository = userRepository;
         }
+        public IList<FilmStudioNoCityResponceData> ListFilmStudioIncludeFilmCopiesNoCity()
+        {
+            var filmstudios = _filmStudioRepository.QueryableFilmStudioIncludeFilmCopies();
+            var list = filmstudios.ToList();
+            IList<FilmStudioNoCityResponceData> newList = new List<FilmStudioNoCityResponceData>();
+            for (var i = 0; i < list.Count; i++)
+            {
+                var test = _mapper.Map<FilmStudioNoCityResponceData>(list[i]);
+                newList.Add(test);
+            }
+            return newList;
+            //return _filmStudioRepository.QueryableFilmStudioIncludeFilmCopies();
+        }
         public IQueryable<FilmStudio> QueryableFilmStudioIncludeFilmCopies()
         {
             return _filmStudioRepository.QueryableFilmStudioIncludeFilmCopies();
