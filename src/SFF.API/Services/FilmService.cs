@@ -62,6 +62,7 @@ namespace SFF.API.Services
 
             return newFilm;
         }
+        
         public Film UpdateFilm(string filmId, PatchFilmRequestData model)
         {
             // Lägger till id:t i modellen
@@ -105,6 +106,7 @@ namespace SFF.API.Services
             _filmCopyRepository.Update(filmCopy);
             _unitOfWork.CompleteAsync();    
         }
+
         public void ReturnFilm(string filmId, string studioId)
         {
             FilmCopy filmCopy = _filmCopyRepository
@@ -119,6 +121,34 @@ namespace SFF.API.Services
 
             _filmCopyRepository.Update(filmCopy);
             _unitOfWork.CompleteAsync();    
+        }
+
+        public List<FilmCopy> GetAllRentedFilms (string filmStudioId)
+        {
+            // *** Skapar två nya listor ***
+            //IList<string> filmId = new List<string>();
+            //List<Film> result = new List<Film>();
+
+            // *** Hämtar alla filme samt alla kopior på filmer som har filstudions id ***
+            //var allFilms = _filmRepository.FilmListIncludeCopies().ToList();
+            var filmCopies = _filmCopyRepository.FilmCopyList()
+                .Where(f => f.FilmStudioId == filmStudioId).ToList();
+
+            if (filmCopies.Count() == 0) throw new Exception("Du har inga hyrda filmer");
+            
+            // *** Lägger in alla id:n i en lista på filmer som filstudion har hyrt ***
+            // foreach (var film in filmCopies)
+            // {
+            //     filmId.Add(film.FilmId);
+            // }
+            // *** Använder alla id:n i listan för att göra en lista på alla filmer som filstudion hyrt ***
+            // foreach (var id in filmId)
+            // {
+            //     Film film = allFilms.Where(f => f.FilmId == id).FirstOrDefault();
+            //     result.Add(film);
+            // }
+            return filmCopies;
+
         }
     }
 

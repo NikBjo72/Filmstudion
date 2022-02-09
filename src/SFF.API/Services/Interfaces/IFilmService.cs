@@ -15,6 +15,7 @@ namespace SFF.API.Services.Interfaces
         public Film UpdateFilm(string filmId, PatchFilmRequestData model);
         public void RentFilm(string filmId, string studioId);
         public void ReturnFilm(string filmId, string studioId);
+        public List<FilmCopy> GetAllRentedFilms (string filmStudioId);
     }
 
 }
