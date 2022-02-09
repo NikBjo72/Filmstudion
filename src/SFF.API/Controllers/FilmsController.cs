@@ -20,9 +20,9 @@ namespace SFF.API.Controllers
     {
         private IFilmService _filmService;
         private IFilmStudioService _filmStudioService;
-        private IFilmService _filmCopyService;
+        private IFilmCopyService _filmCopyService;
 
-        public FilmsController(IFilmService filmService, IFilmStudioService filmStudioService, IFilmService filmCopyService)
+        public FilmsController(IFilmService filmService, IFilmStudioService filmStudioService, IFilmCopyService filmCopyService)
         {
             _filmService = filmService;
             _filmStudioService = filmStudioService;
@@ -153,9 +153,10 @@ namespace SFF.API.Controllers
             if (!studioExist) return Conflict("Det finns ingen filmstudio med detta id");
 
             bool filmCopiesToRent = _filmCopyService
-                .FilmNoCopiesList()
-                .Any(f => f.AvailableForRent == true);
-            if (!studioExist) return Conflict("Det finns inga lediga kopior av denna filmen att hyra");
+                .FilmCopyList()
+                .Where(f => f.FilmId == filmId)
+                .Any(f => f.RentedOut == false);
+            if (!filmCopiesToRent) return Conflict("Det finns inga lediga kopior av denna filmen att hyra");
 
             var user = (User)HttpContext.Items["User"];
             if (user.Role == "admin") return Unauthorized("Som admin kan du inte hyra filmer");
@@ -168,6 +169,41 @@ namespace SFF.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+        }
+
+        [HttpPost("return")]
+        public IActionResult ReturnFilm(string filmId, string studioId)
+        {
+            
+            // Kontrollerar om idn är rätt samt om det är en admin.
+            bool filmExist = _filmService
+                .FilmNoCopiesList()
+                .Any(f => f.FilmId == filmId);
+            if (!filmExist) return Conflict("Det finns ingen film med detta id");
+
+            bool studioExist = _filmStudioService
+                .QueryableFilmStudioNoFilmCopies()
+                .Any(f => f.FilmStudioId == studioId);
+            if (!studioExist) return Conflict("Det finns ingen filmstudio med detta id");
+
+            bool filmCopyRented = _filmCopyService
+                .FilmCopyList()
+                .Where(f => f.FilmStudioId == studioId)
+                .Any(f => f.FilmId == filmId);
+            if (!filmCopyRented) return Conflict("Du har inte hyrt denna filmen");
+
+            var user = (User)HttpContext.Items["User"];
+            if (user.Role == "admin") return Unauthorized("Som admin kan du inte hyra filmer");
+
+            try
+            {
+                _filmService.ReturnFilm(filmId, studioId);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
             }
         }
         

@@ -105,6 +105,21 @@ namespace SFF.API.Services
             _filmCopyRepository.Update(filmCopy);
             _unitOfWork.CompleteAsync();    
         }
+        public void ReturnFilm(string filmId, string studioId)
+        {
+            FilmCopy filmCopy = _filmCopyRepository
+                .FilmCopyList()
+                .Where(f => f.FilmId == filmId)
+                .Where(f => f.FilmStudioId == studioId)
+                .FirstOrDefault();
+
+            filmCopy.FilmStudioId = null;
+            filmCopy.RentedOut = false;
+            filmCopy.Rented = new DateTime();
+
+            _filmCopyRepository.Update(filmCopy);
+            _unitOfWork.CompleteAsync();    
+        }
     }
 
 }

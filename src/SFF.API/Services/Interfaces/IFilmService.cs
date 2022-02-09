@@ -14,6 +14,7 @@ namespace SFF.API.Services.Interfaces
         public Task<Film> CreateNewFilm(CreateFilmRequestData model);
         public Film UpdateFilm(string filmId, PatchFilmRequestData model);
         public void RentFilm(string filmId, string studioId);
+        public void ReturnFilm(string filmId, string studioId);
     }
 
 }
