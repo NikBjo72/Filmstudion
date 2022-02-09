@@ -23,34 +23,40 @@ namespace SFF.API.Controllers
         {
             _filmService = filmService;
         }
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetAllFilms()
         {
-            var filmsIncludeCopies = _filmService.FilmListIncludeCopies();
-            //var filmsNoCopies = _filmService.FilmNoCopiesList().ToList();
+            var user = (User)HttpContext.Items["User"];
 
             try
             {
-                //var user = await userManager.GetUserAsync(User);
-     
-                //if(user == "admin" || user == "filmstudio"){
-                //return Ok(filmsIncludeCopies);
-                return Ok(filmsIncludeCopies);
+
+                if (user == null)
+                {
+                    var filmsNoCopies = _filmService.FilmNoCopiesList().ToList();
+                    return Ok(filmsNoCopies);
+                }
+                if (user != null)
+                {
+                   var filmsIncludeCopies = _filmService.FilmListIncludeCopies().ToList();
+
+                   return Ok(filmsIncludeCopies); 
+                }
                
-                //else return Ok(filmsNoCopies);
             }
             catch (Exception)
             {
                 return BadRequest();
             }
-           
+            return BadRequest();
         }
-        //[AllowAnonymous]
+        
         [HttpPut]
         public async Task<ActionResult<Film>> AddMovie(CreateFilmRequestData model)
         {
-            if (ModelState.IsValid)
+            var user = (User)HttpContext.Items["User"];
+            if (ModelState.IsValid && user.Role == "admin")
             {
                 try
                 {
@@ -62,7 +68,45 @@ namespace SFF.API.Controllers
                     return BadRequest(ex.Message);
                 }
             }
-             return BadRequest();
+             return Unauthorized();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{filmId}")]
+        public IActionResult GetFilms(string filmId)
+        {
+            try
+            {
+                var filmsNoCopy = _filmService.FilmNoCopiesList();
+                bool filmExist = filmsNoCopy.Any(f => f.FilmId == filmId);
+                if (!filmExist) throw new Exception("Det finns ingen film med detta id");
+
+                var user = (User)HttpContext.Items["User"];
+
+                if (user == null || user.Role == "filmstudio" || user.Role == "admin")
+                {
+                    if (user == null)
+                    {
+                        filmsNoCopy = filmsNoCopy
+                        .Where(f => f.FilmId == filmId);
+                        
+                        return Ok(filmsNoCopy);
+                    }
+                
+                    if (user.Role == "filmstudio" || user.Role == "admin")
+                    {
+                        var filmsCopy = _filmService.FilmListIncludeCopies()
+                        .Where(f => f.FilmId == filmId);
+
+                        return Ok(filmsCopy);
+                    }
+                }       
+            }
+            catch (Exception ex)
+            {
+               return NotFound(ex.Message); 
+            }
+            return BadRequest();
         }
         
     }

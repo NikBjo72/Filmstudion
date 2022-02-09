@@ -11,8 +11,5 @@ namespace SFF.API.Transfer
     {
         public string FilmStudioId { get; set; }
         public string Name { get; set; }
-        //[JsonIgnore]
-        //public string City { get; set; }
-        //public List<FilmCopy> FilmCopies { get; set; }
     }
 }

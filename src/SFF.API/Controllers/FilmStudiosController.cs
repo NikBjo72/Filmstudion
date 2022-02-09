@@ -76,7 +76,7 @@ namespace SFF.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("{studioId}")]
-        public IActionResult GetAllFilmsStudios(string studioId)
+        public IActionResult GetFilmsStudio(string studioId)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace SFF.API.Controllers
             }
             catch (Exception ex)
             {
-               return BadRequest(ex.Message); 
+               return NotFound(ex.Message); 
             }
             return BadRequest();
         }
