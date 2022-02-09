@@ -12,6 +12,7 @@ using SFF.API.Transfer;
 
 namespace SFF.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FilmStudiosController : ControllerBase
@@ -69,6 +70,45 @@ namespace SFF.API.Controllers
             catch (Exception)
             {
                return BadRequest(); 
+            }
+            return BadRequest();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{studioId}")]
+        public IActionResult GetAllFilmsStudios(string studioId)
+        {
+            try
+            {
+                var filmstudio = _filmStudioService.QueryableFilmStudioIncludeFilmCopies();
+                bool filmStudioExist = filmstudio.Any(s => s.FilmStudioId == studioId);
+                if (!filmStudioExist) throw new Exception("Det finns ingen filmstudio med detta id");
+
+                var user = (User)HttpContext.Items["User"];
+
+                if (user == null || user.Role == "filmstudio" || user.Role == "admin")
+                {
+                    if (user == null)
+                    {
+                        var filmstudioNoCity = _filmStudioService
+                        .ListFilmStudioIncludeFilmCopiesNoCity()
+                        .Where(s => s.FilmStudioId == studioId);
+                        
+                        return Ok(filmstudioNoCity);
+                    }
+                
+                    if (user.FilmStudioId == studioId || user.Role == "admin")
+                    {
+                        filmstudio = filmstudio
+                        .Where(s => s.FilmStudioId == studioId);
+
+                        return Ok(filmstudio);
+                    }
+                }       
+            }
+            catch (Exception ex)
+            {
+               return BadRequest(ex.Message); 
             }
             return BadRequest();
         }
