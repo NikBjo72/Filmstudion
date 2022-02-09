@@ -62,6 +62,28 @@ namespace SFF.API.Services
 
             return newFilm;
         }
+        public Film UpdateFilm(string filmId, PatchFilmRequestData model)
+        {
+            // Lägger till id:t i modellen
+            model.FilmId = filmId;
+            
+            // kollar om användare redan finns
+            if (!_filmRepository.FilmNoCopiesList().Any(x => x.FilmId == filmId))
+                throw new Exception("Film med detta id finns inte");
+
+            // gör om model till Film och uppdaterar
+            Film updatedFilm = _mapper.Map<Film>(model);
+            _filmRepository.Update(updatedFilm);
+            _unitOfWork.CompleteAsync();
+
+            Film result = _filmRepository
+            .FilmListIncludeCopies()
+            .Where(f => f.FilmId == filmId)
+            .FirstOrDefault();
+
+            return result;
+
+        }
     }
 
 }

@@ -108,6 +108,29 @@ namespace SFF.API.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPatch("{filmId}")]
+        public ActionResult<Film> EditMovie(string filmId, PatchFilmRequestData model)
+        {
+            var user = (User)HttpContext.Items["User"];
+            if (user.Role != "admin")
+            {
+                return Unauthorized("Du har inte behörighet för denna åtgärden");
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    return _filmService.UpdateFilm(filmId, model);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            return BadRequest();
+        }
         
     }
 }

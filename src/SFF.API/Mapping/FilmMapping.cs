@@ -10,6 +10,10 @@ namespace SFF.API.Mapping
         {
             this.CreateMap<Film, CreateFilmRequestData>()
             .ReverseMap();
+
+            this.CreateMap<Film, PatchFilmRequestData>()
+            .ReverseMap();
         }
+
     }    
 }    

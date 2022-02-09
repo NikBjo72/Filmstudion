@@ -44,7 +44,11 @@ namespace SFF.API.Persistence.Repositories
         public async Task AddAsync(Film film)
 	    {
 	    	await _context.Films.AddAsync(film);
-            //await _unitOfWork.CompleteAsync();
+	    }
+
+        public void Update(Film film)
+	    {
+	    	_context.Films.Update(film);
 	    }
 
     }

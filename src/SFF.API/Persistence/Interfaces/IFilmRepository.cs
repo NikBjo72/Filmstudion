@@ -11,6 +11,7 @@ namespace SFF.API.Persistence.Interfaces
         public IQueryable<Film> FilmListIncludeCopies();
         public IQueryable<Film> FilmNoCopiesList();
         public Task AddAsync(Film film);
+        public void Update(Film film);
 
     }
 }
