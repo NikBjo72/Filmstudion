@@ -13,6 +13,7 @@ namespace SFF.API.Services.Interfaces
         public IQueryable<Film> FilmNoCopiesList();
         public Task<Film> CreateNewFilm(CreateFilmRequestData model);
         public Film UpdateFilm(string filmId, PatchFilmRequestData model);
+        public void RentFilm(string filmId, string studioId);
     }
 
 }

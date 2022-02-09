@@ -84,6 +84,27 @@ namespace SFF.API.Services
             return result;
 
         }
+
+        public void RentFilm(string filmId, string studioId)
+        {
+            bool areadyRented = _filmCopyRepository
+                .FilmCopyList()
+                .Where(f => f.FilmId == filmId)
+                .Any(f => f.FilmStudioId == studioId);
+            if (areadyRented) throw new Exception("Du hyr redan denna filmen");
+
+            FilmCopy filmCopy = _filmCopyRepository
+                .FilmCopyList()
+                .Where(f => f.FilmId == filmId)
+                .FirstOrDefault();
+
+            filmCopy.FilmStudioId = studioId;
+            filmCopy.RentedOut = true;
+            filmCopy.Rented = DateTime.Today;
+
+            _filmCopyRepository.Update(filmCopy);
+            _unitOfWork.CompleteAsync();    
+        }
     }
 
 }

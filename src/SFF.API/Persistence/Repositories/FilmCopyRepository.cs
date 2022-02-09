@@ -29,6 +29,10 @@ namespace SFF.API.Persistence.Repositories
             filmCopies = filmCopies.Where(f => f.FilmId == filmId);
             return filmCopies;        
         }
+        public void Update(FilmCopy filmCopy)
+	    {
+	    	_context.FilmCopies.Update(filmCopy);
+	    }
 
     }
 }

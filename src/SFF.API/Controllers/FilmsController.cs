@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SFF.API.Domain.Authorization;
@@ -18,10 +19,14 @@ namespace SFF.API.Controllers
     public class FilmsController : ControllerBase
     {
         private IFilmService _filmService;
+        private IFilmStudioService _filmStudioService;
+        private IFilmService _filmCopyService;
 
-        public FilmsController(IFilmService filmService)
+        public FilmsController(IFilmService filmService, IFilmStudioService filmStudioService, IFilmService filmCopyService)
         {
             _filmService = filmService;
+            _filmStudioService = filmStudioService;
+            _filmCopyService = filmCopyService;
         }
         [AllowAnonymous]
         [HttpGet]
@@ -130,6 +135,40 @@ namespace SFF.API.Controllers
                 }
             }
             return BadRequest();
+        }
+
+        [HttpPost("rent")]
+        public IActionResult RentFilm(string filmId, string studioId)
+        {
+            
+            // Kontrollerar om idn är rätt samt om det är en admin.
+            bool filmExist = _filmService
+                .FilmNoCopiesList()
+                .Any(f => f.FilmId == filmId);
+            if (!filmExist) return Conflict("Det finns ingen film med detta id");
+
+            bool studioExist = _filmStudioService
+                .QueryableFilmStudioNoFilmCopies()
+                .Any(f => f.FilmStudioId == studioId);
+            if (!studioExist) return Conflict("Det finns ingen filmstudio med detta id");
+
+            bool filmCopiesToRent = _filmCopyService
+                .FilmNoCopiesList()
+                .Any(f => f.AvailableForRent == true);
+            if (!studioExist) return Conflict("Det finns inga lediga kopior av denna filmen att hyra");
+
+            var user = (User)HttpContext.Items["User"];
+            if (user.Role == "admin") return Unauthorized("Som admin kan du inte hyra filmer");
+
+            try
+            {
+                _filmService.RentFilm(filmId, studioId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
         }
         
     }
