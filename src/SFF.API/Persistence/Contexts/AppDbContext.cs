@@ -101,19 +101,43 @@ namespace SFF.API.Persistence.Contexts
                     FilmId = "1",
                     RentedOut = false,
                     Rented = DateTime.Today,
-                    },
-                    new FilmCopy {
+                },
+                new FilmCopy {
                     FilmCopyId = "102",
                     FilmId = "1",
                     RentedOut = false,
                     Rented = DateTime.Today,
-                    },
-                    new FilmCopy {
+                },
+                new FilmCopy {
                     FilmCopyId = "103",
                     FilmId = "1",
                     RentedOut = false,
                     Rented = DateTime.Today,
-                    }
+                },
+                new FilmCopy {
+                    FilmCopyId = "104",
+                    FilmId = "2",
+                    RentedOut = false,
+                    Rented = DateTime.Today,
+                },
+                new FilmCopy {
+                    FilmCopyId = "105",
+                    FilmId = "2",
+                    RentedOut = false,
+                    Rented = DateTime.Today,
+                },
+                new FilmCopy {
+                    FilmCopyId = "106",
+                    FilmId = "2",
+                    RentedOut = false,
+                    Rented = DateTime.Today,
+                },
+                new FilmCopy {
+                    FilmCopyId = "107",
+                    FilmId = "2",
+                    RentedOut = false,
+                    Rented = DateTime.Today,
+                }
 
             );
             builder.Entity<IdentityRole>().HasData(new IdentityRole

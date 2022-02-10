@@ -13,32 +13,49 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <div class="form-group nav-item mx-2">
-                    <input type="text" class="form-control" id="userName" placeholder="Användarnamn">
-                </div>
-                <div class="form-group nav-item mx-2">
-                    <input type="text" class="form-control" id="password" placeholder="Lösenord">
-                </div>
-                <div class="form-group nav-item mx-2">
-                    <button id="loginBtn" type="button" class="btn btn-primary">Login</button>
-                </div>
-                <div class="form-group nav-item mx-2">
-                    <button hidden="true" id="logoutBtn" type="button" class="btn btn-primary">Logout</button>
-                </div>
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="">
+                    <ul class="navbar-nav">
+                        <div id="loginGroup" class="navbar-nav">
+                            
+                            <div class="nav-item mx-1 my-2">
+                                <button id="filmLibraryBtn" type="button" class="btn btn-secondary">Filmbibliotek</button>
+                            </div>
+    
+                            <div id="rentedFilmsBtnField" hidden="true" class="nav-item mx-1 my-2">
+                                <button id="rentedFilmsBtn" type="button" class="btn btn-secondary">Lånade filmer</button>
+                            </div>
 
-                  
-            </ul>
-          </div>
+                            <div id="logoutBtnField" class="nav-item mx-2 my-2" hidden="true">
+                                <button id="logoutBtn" type="button" class="btn btn-primary">Logout</button>
+                            </div>
+                            <div id="loginField" class="navbar-nav">
+                                <div id="loginBtnField" class="nav-item mx-2 my-2">
+                                    <button id="loginBtn" type="button" class="btn btn-primary">Login</button>
+                                </div>
+
+                                <div class="nav-item mx-2 my-2">
+                                    <input type="text" class="form-control" id="userName" placeholder="Användarnamn">
+                                </div>
+
+                                <div class="nav-item mx-2 my-2">
+                                    <input type="text" class="form-control" id="password" placeholder="Lösenord">
+                                </div>
+                            </div>
+                        </div>  
+                    </ul>
+                </div>
+            </div>
         </div>
-      </nav> 
+    </nav>
+    <div id="dynamicView" class="container py-4">
+
+        <!-- *** dynamic insert *** -->
+
+    </div>
 </body>
 </html>
