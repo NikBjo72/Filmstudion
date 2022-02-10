@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a href="index.html"><img class="mx-5"src="img/SFF_header_logo_192x120px.png" alt="Sveriges förenade Filmstudior logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,12 +33,18 @@
                             <div id="logoutBtnField" class="nav-item mx-2 my-2" hidden="true">
                                 <button id="logoutBtn" type="button" class="btn btn-primary">Logout</button>
                             </div>
+
+                            <div id="loggedInField" hidden="true" class="nav-item mx-1 my-2">
+                                Inloggad som:
+                                <h5 id="loggedInName" class="text-success"></h5>
+                            </div>
+
                             <div id="loginField" class="navbar-nav">
                                 <div id="loginBtnField" class="nav-item mx-2 my-2">
                                     <button id="loginBtn" type="button" class="btn btn-primary">Login</button>
                                 </div>
 
-                                <div class="nav-item mx-2 my-2">
+                                <div id="userNameField"class="nav-item mx-2 my-2">
                                     <input type="text" class="form-control" id="userName" placeholder="Användarnamn">
                                 </div>
 
@@ -46,6 +52,7 @@
                                     <input type="text" class="form-control" id="password" placeholder="Lösenord">
                                 </div>
                             </div>
+
                         </div>  
                     </ul>
                 </div>

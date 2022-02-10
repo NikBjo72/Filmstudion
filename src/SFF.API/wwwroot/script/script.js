@@ -1,9 +1,9 @@
 console.log("Hej html!")
 
 const app = {
-    userToken: "",
-    userId: "",
-    userName: "",
+    userToken: localStorage.getItem("token"),
+    userId: localStorage.getItem("userId"),
+    loggedIn: localStorage.getItem("loggedInName"),
     userName: document.getElementById("userName"),
     password: document.getElementById("password"),
     loginBtn: document.getElementById("loginBtn"),
@@ -14,8 +14,13 @@ const app = {
     dynamicView: document.getElementById("dynamicView"),
     rentedFilmsBtnField: document.getElementById("rentedFilmsBtnField"),
     logoutBtnField: document.getElementById("logoutBtnField"),
-    loginField: document.getElementById("loginField")
+    loginField: document.getElementById("loginField"),
+    userNameField: document.getElementById("userNameField"),
+    loggedInField: document.getElementById("loggedInField"),
+    loggedInName: document.getElementById("loggedInName")
 };
+
+loggedInTrue();
 
 //app.filmLibraryBtn.hidden = false;
 
@@ -28,6 +33,18 @@ app.rentedFilmsBtn.addEventListener('click', async function()
 {
     getRentedFilms();
 });
+
+function loggedInTrue()
+{
+    if (localStorage.getItem("token") != null)
+    {
+        app.rentedFilmsBtnField.hidden = false;
+        app.logoutBtnField.hidden = false;
+        app.loginField.hidden = true;
+        app.loggedInField.hidden = false;
+        app.loggedInName.innerText = app.loggedIn;
+    }
+}
 
 app.loginBtn.addEventListener('click', async function() {
     let raw = JSON.stringify({
@@ -44,18 +61,41 @@ app.loginBtn.addEventListener('click', async function() {
         body: raw,
         redirect: 'follow'
       };
-
+    
     let response = await fetch("/api/users/authenticate", requestOptions)
-    data = await response.json();
-
-    //console.log(data);
-    app.userToken = data.token;
-    app.userId = data.filmStudioId;
-    app.userName = data.userName;
-    //console.log(app.userToken);
-    app.rentedFilmsBtnField.hidden = false;
-    app.logoutBtnField.hidden = false;
-    app.loginField.hidden = true;
+    let ok = true;
+    try {
+            if(response.ok)
+            {
+                response = await response.json();
+            }
+            else throw new Error(response.status)
+        }
+        catch (error)
+        {
+            console.log(error)
+            if (error == "Error: 400")
+            {
+                if (!checkExistingElement("rejected"))
+                {
+                    app.userNameField.insertAdjacentHTML('beforeend',` <div id="rejected" class="text-danger">Fel användarnamn eller lösenord</div>`);
+                }
+                    ok = false;
+            }
+        }
+debugger
+    //console.log(data)
+    if (ok)
+    {
+        app.rentedFilmsBtnField.hidden = false;
+        app.logoutBtnField.hidden = false;
+        app.loginField.hidden = true;
+        app.loggedInField.hidden = false;
+        app.loggedInName.innerText = app.loggedIn;
+        localStorage.setItem("token", await response.token);
+        localStorage.setItem("userId", await response.filmStudioId);
+        localStorage.setItem("loggedInName", await response.userName);
+    }
 });
 
 //Loggar ut användare
@@ -63,10 +103,9 @@ app.logoutBtn.addEventListener('click', function() {
     app.logoutBtnField.hidden = true;
     app.loginField.hidden = false;
     app.rentedFilmsBtnField.hidden = true;
-    app.userToken = "";
-    app.password.value = "";
-    app.userName.value ="";
-    console.log(app.userToken);
+    localStorage.clear();
+    app.loggedInField.hidden = true;
+    //console.log(app.userToken);
 });
 
 async function getAllFilms()
@@ -82,7 +121,7 @@ async function getAllFilms()
 
     let response = await fetch("/api/films", requestOptions)
     let filmInfo = await response.json();
-    console.log(filmInfo);
+
     app.dynamicView.innerHTML = "";
 
     for (let i = 0; i < filmInfo.length; i++)
@@ -90,7 +129,7 @@ async function getAllFilms()
         app.dynamicView.insertAdjacentHTML('beforeend',`
         <div class="card my-3">
             <div class="card-header">
-                Film
+            <span>Film</span><h5 class="d-inline mx-2 text-success" id="rented-${filmInfo[i].filmId}"></h5>
             </div>
             <div class="card-body">
                 <h5 class="card-title">${filmInfo[i].name}</h5>
@@ -132,7 +171,7 @@ async function getRentedFilms()
         app.dynamicView.insertAdjacentHTML('beforeend',`
         <div class="card my-3">
             <div class="card-header">
-                Film
+            Film
             </div>
             <div class="card-body">
                 <h5 class="card-title">${film[0].name}</h5>
@@ -164,13 +203,12 @@ async function returnFilm(filmId)
     } catch (error) {
         console.log(error)
     }
-    
-
     getRentedFilms();
 }
 
 async function rentFilm(filmId)
 {
+    let ok = true;
     let myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${app.userToken}`);
 
@@ -186,16 +224,30 @@ async function rentFilm(filmId)
     if(response.ok){
         response = await response.json();
     } else throw new Error(response.status)
-    
+
     } catch (error) {
+        debugger
         console.log(error)
         if (error == "Error: 403"){
-        document.getElementById(`film-${filmId}`).innerText = "Du hyr redan denna filmen!";
+            document.getElementById(`film-${filmId}`).innerText = "Du lånar redan denna filmen!";
+            ok = false;
         }
         if (error == "Error: 409"){
             document.getElementById(`film-${filmId}`).innerText = "Det finns inga kopior kvar att låna av denna filmen!";
+            ok = false;
+        }
+        if (ok){
+            document.getElementById(`rented-${filmId}`).innerText = "LÅNAD";
         }
     }
+}   
+
+function checkExistingElement(elementId){ // Kollar om ett visst element (inmatad parameter) finns i DOM.
+    let element = document.getElementById(elementId)
+    if (typeof(element) != "undefined" && element != null){
+        return true;
+    }
+        return false;
 }
 
 window = returnFilm;
