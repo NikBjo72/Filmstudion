@@ -82,7 +82,6 @@ namespace SFF.API.Services
 
             var newUser = _mapper.Map<User>(model);
             newUser.Role = "admin";
-            //newUser.Token ="";
 
             // krypterar lösenordet
             newUser.Password = BCryptNet.HashPassword(model.Password);
@@ -91,31 +90,11 @@ namespace SFF.API.Services
             await _userRepository.AddAsync(newUser);
             await _unitOfWork.CompleteAsync();
 
-            //User user = GetById(newUser.Id);
-
             // lägger in användaren i en roll
             await _userManager.AddToRoleAsync(newUser, "admin");
             await _unitOfWork.CompleteAsync();
             return newUser;
         }
-
-        // public void Update(int id, UpdateRequest model)
-        // {
-        //     var user = getUser(id);
-
-        //     // validate
-        //     if (model.Username != user.Username && _context.Users.Any(x => x.Username == model.Username))
-        //         throw new AppException("Username '" + model.Username + "' is already taken");
-
-        //     // hash password if it was entered
-        //     if (!string.IsNullOrEmpty(model.Password))
-        //         user.PasswordHash = BCryptNet.HashPassword(model.Password);
-
-        //     // copy model to user and save
-        //     _mapper.Map(model, user);
-        //     _context.Users.Update(user);
-        //     _context.SaveChanges();
-        // }
 
         public void Delete(string userId)
         {

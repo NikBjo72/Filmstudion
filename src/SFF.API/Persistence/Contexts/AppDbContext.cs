@@ -29,7 +29,6 @@ namespace SFF.API.Persistence.Contexts
             builder.Entity<Film>().Property(p => p.Name).IsRequired().HasMaxLength(30);
             builder.Entity<Film>().Property(p => p.Country).IsRequired().HasMaxLength(30);
             builder.Entity<Film>().Property(p => p.Director).IsRequired().HasMaxLength(30);
-            //builder.Entity<Film>().HasMany(p => p.FilmCopies).WithOne(p => p.Film).HasForeignKey(p => p.FilmId);
 
             builder.Entity<FilmStudio>().ToTable("FilmStudios");
             builder.Entity<FilmStudio>().HasKey(p => p.FilmStudioId);
@@ -43,7 +42,6 @@ namespace SFF.API.Persistence.Contexts
             builder.Entity<User>().Property(p => p.Role).IsRequired();
             builder.Entity<User>().Property(p => p.UserName).IsRequired().HasMaxLength(30);
             builder.Entity<User>().Property(p => p.Password).IsRequired();
-            //builder.Entity<User>().Property(p => p.Token);
 
             builder.Entity<FilmCopy>().ToTable("FilmCopies");
             builder.Entity<FilmCopy>().Property(p => p.FilmCopyId).IsRequired().ValueGeneratedOnAdd();

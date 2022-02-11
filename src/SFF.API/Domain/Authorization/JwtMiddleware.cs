@@ -22,7 +22,7 @@ namespace SFF.API.Domain.Authorization
             var userId = jwtUtils.ValidateToken(token);
             if (userId != null)
             {
-                // attach user to context on successful jwt validation
+                // lägger till användare i context vid lyckad validering
                 context.Items["User"] = userService.GetById(userId);
             }
 

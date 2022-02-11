@@ -11,7 +11,6 @@ namespace SFF.API.Domain.Entities.Interfaces
         public bool RentedOut { get; set; }
         public string FilmStudioId { get; set; }
         public DateTime Rented { get; set; }
-        //public Film Film { get; set; }
         
     }
 

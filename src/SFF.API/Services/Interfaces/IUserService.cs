@@ -13,7 +13,6 @@ namespace SFF.API.Services.Interfaces
         IQueryable<User> GetAll();
         User GetById(string userId);
         Task<User> Register(UserRegisterRequestData model);
-        //void Update(int id, UpdateRequest model);
         void Delete(string userId);
     }
 

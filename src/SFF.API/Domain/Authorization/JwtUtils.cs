@@ -27,7 +27,7 @@ namespace SFF.API.Domain.Authorization
 
         public string GenerateToken(User user)
         {
-            // generate token that is valid for 7 days
+            // genererar token för sju dagar
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -62,12 +62,12 @@ namespace SFF.API.Domain.Authorization
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = jwtToken.Claims.First(x => x.Type == "Id").Value;
 
-                // return user id from JWT token if validation successful
+                // returnerar id från JWT token om validering lyckas
                 return userId;
             }
             catch
             {
-                // return null if validation fails
+                // returnerar nul om validering misslyckas
                 return null;
             }
         }

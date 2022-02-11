@@ -55,7 +55,6 @@ namespace SFF.API.Services
                 newList.Add(test);
             }
             return newList;
-            //return _filmStudioRepository.QueryableFilmStudioIncludeFilmCopies();
         }
         public IQueryable<FilmStudio> QueryableFilmStudioIncludeFilmCopies()
         {
@@ -76,7 +75,6 @@ namespace SFF.API.Services
 
             var newFilmStudioUser = _mapper.Map<User>(model);
             newFilmStudioUser.Role = "filmstudio";
-            //newFilmStudioUser.Token ="";
 
             // Krypterar lösenordet
             newFilmStudioUser.Password = BCryptNet.HashPassword(model.Password);

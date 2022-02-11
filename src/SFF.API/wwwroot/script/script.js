@@ -22,8 +22,6 @@ const app = {
 
 loggedInTrue();
 
-//app.filmLibraryBtn.hidden = false;
-
 app.filmLibraryBtn.addEventListener('click', async function()
 {
     getAllFilms();
@@ -73,7 +71,6 @@ app.loginBtn.addEventListener('click', async function() {
         }
         catch (error)
         {
-            console.log(error)
             if (error == "Error: 400")
             {
                 if (!checkExistingElement("rejected"))
@@ -84,18 +81,18 @@ app.loginBtn.addEventListener('click', async function() {
             }
         }
 
-    //console.log(data)
     if (ok)
     {
+        localStorage.setItem("token", await response.token);
+        localStorage.setItem("userId", await response.filmStudioId);
+        localStorage.setItem("loggedInName", await response.userName);
         app.rentedFilmsBtnField.hidden = false;
         app.logoutBtnField.hidden = false;
         app.loginField.hidden = true;
         app.loggedInField.hidden = false;
         app.loggedInName.innerText = app.loggedIn;
-        localStorage.setItem("token", await response.token);
-        localStorage.setItem("userId", await response.filmStudioId);
-        localStorage.setItem("loggedInName", await response.userName);
     }
+    window.location.reload();
 });
 
 //Loggar ut användare
@@ -105,7 +102,6 @@ app.logoutBtn.addEventListener('click', function() {
     app.rentedFilmsBtnField.hidden = true;
     localStorage.clear();
     app.loggedInField.hidden = true;
-    //console.log(app.userToken);
 });
 
 async function getAllFilms()
@@ -159,14 +155,12 @@ async function getRentedFilms()
 
     let responseCopy = await fetch("/api/mystudio/rentals", requestOptions)
     let filmCopies = await responseCopy.json();
-    console.log(filmCopies);
     app.dynamicView.innerHTML = "";
 
     for (let i = 0; i < filmCopies.length; i++)
     {  
         let responseFilm = await fetch(`/api/films/${filmCopies[i].filmId}`, requestOptions)
         let film = await responseFilm.json();
-        console.log(film);
 
         app.dynamicView.insertAdjacentHTML('beforeend',`
         <div class="card my-3">
@@ -201,7 +195,6 @@ async function returnFilm(filmId)
     try {
         response = await response.json(); 
     } catch (error) {
-        console.log(error)
     }
     getRentedFilms();
 }
@@ -226,7 +219,6 @@ async function rentFilm(filmId)
     } else throw new Error(response.status)
 
     } catch (error) {
-        console.log(error)
         if (error == "Error: 403"){
             document.getElementById(`film-${filmId}`).innerText = "Du lånar redan denna filmen!";
             ok = false;
@@ -241,7 +233,8 @@ async function rentFilm(filmId)
     }
 }   
 
-function checkExistingElement(elementId){ // Kollar om ett visst element (inmatad parameter) finns i DOM.
+// Kollar om ett visst element (inmatad parameter) finns i DOM.
+function checkExistingElement(elementId){ 
     let element = document.getElementById(elementId)
     if (typeof(element) != "undefined" && element != null){
         return true;
