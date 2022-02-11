@@ -78,12 +78,43 @@ namespace SFF.API.Services
             _filmRepository.Update(updatedFilm);
             _unitOfWork.CompleteAsync();
 
-            Film result = _filmRepository
+            Film oldFilm = _filmRepository
             .FilmListIncludeCopies()
             .Where(f => f.FilmId == filmId)
             .FirstOrDefault();
 
-            return result;
+            var filmCopies = _filmCopyRepository
+                .FilmCopyList()
+                .Where(f => f.FilmId == filmId);
+
+            // Skapar eller tar bort kopior av filmen om antalet ändrats
+            if (filmCopies.Count() != model.NumberOfCopies)         {
+
+                if (filmCopies.Count() < model.NumberOfCopies)
+                {
+                    for (var i = filmCopies.Count(); i <= model.NumberOfCopies; i++)
+                    {
+                        FilmCopy filmCopy = new FilmCopy {
+                        FilmId = model.FilmId,
+                        RentedOut = false,
+                        FilmStudioId = null,
+                        Rented = new DateTime(),
+                        };
+                        _filmCopyRepository.AddAsync(filmCopy);
+                    }
+                    _unitOfWork.CompleteAsync();
+                }
+                if (filmCopies.Count() > model.NumberOfCopies)
+                {
+                    for (var i = filmCopies.Count(); i >= model.NumberOfCopies; i--)
+                    {
+                        var deleteFilmCopy = filmCopies.FirstOrDefault();
+                        _filmCopyRepository.Delete(deleteFilmCopy);
+                    }
+                }
+            }
+            _unitOfWork.CompleteAsync();
+            return oldFilm;
 
         }
 
@@ -150,6 +181,12 @@ namespace SFF.API.Services
             // }
             return filmCopies;
 
+        }
+
+        public void Delete(FilmCopy filmCopy)
+        {
+           _filmCopyRepository.Delete(filmCopy);
+           _unitOfWork.CompleteAsync();
         }
     }
 

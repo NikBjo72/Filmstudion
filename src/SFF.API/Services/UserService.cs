@@ -117,10 +117,10 @@ namespace SFF.API.Services
         //     _context.SaveChanges();
         // }
 
-        public async void Delete(string userId)
+        public void Delete(string userId)
         {
            _userRepository.Delete(userId);
-           await _unitOfWork.CompleteAsync();
+           _unitOfWork.CompleteAsync();
         }
     }
 

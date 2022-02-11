@@ -33,6 +33,10 @@ namespace SFF.API.Persistence.Repositories
 	    {
 	    	_context.FilmCopies.Update(filmCopy);
 	    }
+        public async Task Delete(FilmCopy filmCopy)
+	    {
+	    	_context.FilmCopies.Remove(filmCopy);
+	    }
 
     }
 }

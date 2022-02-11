@@ -12,6 +12,7 @@ namespace SFF.API.Persistence.Interfaces
         public Task AddAsync(FilmCopy filmCopy);
         public IQueryable<FilmCopy> GetFilmCopiesByFilmId(string filmId);
         public void Update(FilmCopy filmCopy);
+        public Task Delete(FilmCopy filmCopy);
 
     }
 }

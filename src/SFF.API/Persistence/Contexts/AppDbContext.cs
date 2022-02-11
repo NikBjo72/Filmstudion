@@ -59,7 +59,7 @@ namespace SFF.API.Persistence.Contexts
                     ReleaseDate = new DateTime(1988,07,15),
                     Country = "USA",
                     Director = "John McTiernan",
-                    NumberOfCopies = 3,
+                    NumberOfCopies = 2,
                     AvailableForRent = true,
                     MaxRentDays = 20
                     },
@@ -69,7 +69,7 @@ namespace SFF.API.Persistence.Contexts
                     ReleaseDate = new DateTime(1990,07,4),
                     Country = "USA",
                     Director = "Renny Harlin",
-                    NumberOfCopies = 4,
+                    NumberOfCopies = 2,
                     AvailableForRent = true,
                     MaxRentDays = 15
                     },
@@ -79,7 +79,7 @@ namespace SFF.API.Persistence.Contexts
                     ReleaseDate = new DateTime(1995,05,19),
                     Country = "USA",
                     Director = "John McTiernan",
-                    NumberOfCopies = 6,
+                    NumberOfCopies = 2,
                     AvailableForRent = true,
                     MaxRentDays = 10
                     },
@@ -89,7 +89,7 @@ namespace SFF.API.Persistence.Contexts
                     ReleaseDate = new DateTime(2007,06,27),
                     Country = "USA",
                     Director = "Len Wiseman",
-                    NumberOfCopies = 6,
+                    NumberOfCopies = 1,
                     AvailableForRent = true,
                     MaxRentDays = 12
                     }      
@@ -110,7 +110,7 @@ namespace SFF.API.Persistence.Contexts
                 },
                 new FilmCopy {
                     FilmCopyId = "103",
-                    FilmId = "1",
+                    FilmId = "2",
                     RentedOut = false,
                     Rented = DateTime.Today,
                 },
@@ -122,19 +122,19 @@ namespace SFF.API.Persistence.Contexts
                 },
                 new FilmCopy {
                     FilmCopyId = "105",
-                    FilmId = "2",
+                    FilmId = "3",
                     RentedOut = false,
                     Rented = DateTime.Today,
                 },
                 new FilmCopy {
                     FilmCopyId = "106",
-                    FilmId = "2",
+                    FilmId = "3",
                     RentedOut = false,
                     Rented = DateTime.Today,
                 },
                 new FilmCopy {
                     FilmCopyId = "107",
-                    FilmId = "2",
+                    FilmId = "4",
                     RentedOut = false,
                     Rented = DateTime.Today,
                 }
