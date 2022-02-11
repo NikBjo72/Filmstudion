@@ -8,7 +8,7 @@ using SFF.API.Transfer.Interfaces;
 
 namespace SFF.API.Transfer
 {
-    public class PatchFilmRequestData : Ifilm
+    public class PatchFilmRequestData : IFilm
     {
         [JsonIgnore]
         public string FilmId { get; set; }

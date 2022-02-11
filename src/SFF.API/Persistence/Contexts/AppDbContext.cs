@@ -43,7 +43,7 @@ namespace SFF.API.Persistence.Contexts
             builder.Entity<User>().Property(p => p.Role).IsRequired();
             builder.Entity<User>().Property(p => p.UserName).IsRequired().HasMaxLength(30);
             builder.Entity<User>().Property(p => p.Password).IsRequired();
-            builder.Entity<User>().Property(p => p.Token);
+            //builder.Entity<User>().Property(p => p.Token);
 
             builder.Entity<FilmCopy>().ToTable("FilmCopies");
             builder.Entity<FilmCopy>().Property(p => p.FilmCopyId).IsRequired().ValueGeneratedOnAdd();

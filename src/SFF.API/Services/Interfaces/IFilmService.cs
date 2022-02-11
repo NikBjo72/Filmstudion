@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SFF.API.Domain.Entities;
+using SFF.API.Domain.Entities.Interfaces;
 using SFF.API.Transfer;
 
 namespace SFF.API.Services.Interfaces

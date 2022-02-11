@@ -76,7 +76,7 @@ namespace SFF.API.Services
 
             var newFilmStudioUser = _mapper.Map<User>(model);
             newFilmStudioUser.Role = "filmstudio";
-            newFilmStudioUser.Token ="";
+            //newFilmStudioUser.Token ="";
 
             // Krypterar lösenordet
             newFilmStudioUser.Password = BCryptNet.HashPassword(model.Password);

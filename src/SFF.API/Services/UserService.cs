@@ -82,7 +82,7 @@ namespace SFF.API.Services
 
             var newUser = _mapper.Map<User>(model);
             newUser.Role = "admin";
-            newUser.Token ="";
+            //newUser.Token ="";
 
             // krypterar lösenordet
             newUser.Password = BCryptNet.HashPassword(model.Password);

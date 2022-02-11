@@ -83,7 +83,7 @@ app.loginBtn.addEventListener('click', async function() {
                     ok = false;
             }
         }
-debugger
+
     //console.log(data)
     if (ok)
     {
@@ -226,7 +226,6 @@ async function rentFilm(filmId)
     } else throw new Error(response.status)
 
     } catch (error) {
-        debugger
         console.log(error)
         if (error == "Error: 403"){
             document.getElementById(`film-${filmId}`).innerText = "Du lånar redan denna filmen!";

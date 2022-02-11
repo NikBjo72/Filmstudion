@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using SFF.API.Domain.Entities;
+using SFF.API.Domain.Entities.Interfaces;
 using SFF.API.Persistence.Interfaces;
 using SFF.API.Persistence.Repositories;
 using SFF.API.Services.Interfaces;

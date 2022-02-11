@@ -5,7 +5,7 @@ using SFF.API.Domain.Entities.Interfaces;
 
 namespace SFF.API.Domain.Entities
 {
-    public class Film : Ifilm
+    public class Film : IFilm
     {
         public string FilmId { get; set; }
         public string Name { get; set; }

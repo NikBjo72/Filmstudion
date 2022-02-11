@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SFF.API.Domain.Entities.Interfaces
 {
-    public interface Ifilm
+    public interface IFilm
     {
         public string FilmId { get; set; }
         public string Name { get; set; }

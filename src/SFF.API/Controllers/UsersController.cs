@@ -12,6 +12,7 @@ using SFF.API.Transfer;
 
 namespace SFF.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase

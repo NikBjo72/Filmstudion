@@ -13,7 +13,7 @@ namespace SFF.API.Domain.Entities.Interfaces
         public string FilmStudioId { get; set; }
         public FilmStudio FilmStudios { get; set; }
         public string Password { get; set; }
-        public string Token { get; set; }
+        //public string Token { get; set; }
     }
 
 }

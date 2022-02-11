@@ -94,6 +94,11 @@ namespace SFF.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SFF.API v1"));
             }
 
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
             app.UseDefaultFiles();
 
             app.UseStaticFiles();
@@ -101,11 +106,6 @@ namespace SFF.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
 
             //app.UseAuthentication();    
             //app.UseAuthorization();

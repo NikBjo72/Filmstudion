@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SFF.API.Domain.Authorization;
 using SFF.API.Domain.Entities;
+using SFF.API.Domain.Entities.Interfaces;
 using SFF.API.Persistence.Repositories;
 using SFF.API.Services.Interfaces;
 using SFF.API.Transfer;
@@ -58,7 +59,7 @@ namespace SFF.API.Controllers
         }
         
         [HttpPut]
-        public async Task<ActionResult<Film>> AddMovie(CreateFilmRequestData model)
+        public async Task<ActionResult<IFilm>> AddMovie(CreateFilmRequestData model)
         {
             var user = (User)HttpContext.Items["User"];
             if (ModelState.IsValid && user.Role == "admin")
@@ -115,7 +116,7 @@ namespace SFF.API.Controllers
         }
 
         [HttpPatch("{filmId}")]
-        public ActionResult<Film> EditMovie(string filmId, PatchFilmRequestData model)
+        public ActionResult<IFilm> EditMovie(string filmId, PatchFilmRequestData model)
         {
             var user = (User)HttpContext.Items["User"];
             if (user.Role != "admin")
