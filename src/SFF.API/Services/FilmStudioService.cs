@@ -48,12 +48,8 @@ namespace SFF.API.Services
         {
             var filmstudios = _filmStudioRepository.QueryableFilmStudioIncludeFilmCopies();
             var list = filmstudios.ToList();
-            IList<FilmStudioNoCityResponceData> newList = new List<FilmStudioNoCityResponceData>();
-            for (var i = 0; i < list.Count; i++)
-            {
-                var test = _mapper.Map<FilmStudioNoCityResponceData>(list[i]);
-                newList.Add(test);
-            }
+
+            var newList = _mapper.Map<IList<FilmStudio>, IList<FilmStudioNoCityResponceData>>(list);
             return newList;
         }
         public IQueryable<FilmStudio> QueryableFilmStudioIncludeFilmCopies()
