@@ -17,6 +17,10 @@ nupkg/
 *.userosscache
 *.sln.docstates
 
+# Folders
+*originaldokument
+src/SFF.API/bin/*
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
